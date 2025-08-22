@@ -16,7 +16,7 @@ import LoginPage from './pages/LoginPage';
 // Shared Authenticated Pages
 import ProfilePage from './pages/shared/ProfilePage';
 import ExpensesPage from './pages/shared/ExpensesPage';
-import ChatPage from './pages/shared/ChatPage';
+import ChatPage from './pages-chat/ChatPage';
 import LeaderboardPage from './pages/shared/LeaderboardPage';
 import NotificationsPage from './pages/shared/NotificationsPage';
 import FilesPage from './pages/shared/FilesPage';
@@ -40,30 +40,25 @@ import MyProgressPage from './pages/executive/MyProgressPage';
 
 
 // --- GUARD COMPONENTS ---
-
-// This component protects routes that require a user to be a MANAGER
 const ManagerRoutes = () => {
   const { user } = useAuthStore();
   return user?.role === 'MANAGER' ? <AppLayout /> : <Navigate to="/" replace />;
 };
 
-// This component protects routes that require a user to be an EXECUTIVE
 const ExecutiveRoutes = () => {
   const { user } = useAuthStore();
   return user?.role === 'EXECUTIVE' ? <AppLayout /> : <Navigate to="/" replace />;
 };
 
-// This component protects routes that just require ANY authenticated user
 const SharedRoutes = () => {
-  const { isAuthenticated } = useAuthStore();
-  return isAuthenticated ? <AppLayout /> : <Navigate to="/login" replace />;
+    const { isAuthenticated } = useAuthStore();
+    return isAuthenticated ? <AppLayout /> : <Navigate to="/login" replace />;
 }
 
-// This component is a single point for redirecting after login
 const RoleBasedRedirect = () => {
-  const { user } = useAuthStore();
-  if (!user) return <Navigate to="/login" replace />;
-  return user.role === 'MANAGER' ? <Navigate to="/manager" replace /> : <Navigate to="/executive" replace />;
+    const { user } = useAuthStore.getState();
+    if (!user) return <Navigate to="/login" replace />;
+    return user.role === 'MANAGER' ? <Navigate to="/manager" replace /> : <Navigate to="/executive" replace />;
 }
 
 function App() {
@@ -71,12 +66,11 @@ function App() {
 
   useEffect(() => {
     const initApp = async () => {
-      if (accessToken) {
-        await getMe();
-        // Fetch initial notifications after user is loaded
-        const { data } = await axiosInstance.get('/api/notifications');
-        setNotifications(data);
-      }
+        if (accessToken) {
+            await getMe();
+            const { data } = await axiosInstance.get('/api/notifications');
+            setNotifications(data);
+        }
     }
     initApp();
   }, [accessToken, getMe, setNotifications]);
@@ -92,6 +86,7 @@ function App() {
             <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/dashboard" />} />
           </Route>
 
+          {/* --- A dedicated route to handle redirecting logged-in users --- */}
           <Route path="/dashboard" element={<RoleBasedRedirect />} />
 
           {/* --- Role-Specific Protected Routes --- */}
@@ -104,7 +99,7 @@ function App() {
             <Route path="/manager/teams" element={<TeamsPage />} />
             <Route path="/manager/targets" element={<TargetsPage />} />
           </Route>
-
+          
           <Route element={<ExecutiveRoutes />}>
             <Route path="/executive" element={<ExecutiveDashboard />} />
             <Route path="/executive/my-targets" element={<MyTargetsPage />} />
@@ -124,7 +119,7 @@ function App() {
             <Route path="/files" element={<FilesPage />} />
           </Route>
 
-          {/* --- Redirects and Catch-alls --- */}
+          {/* --- Catch-all to redirect any unknown URL to the home page --- */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
