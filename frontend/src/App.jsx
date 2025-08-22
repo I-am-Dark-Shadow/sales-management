@@ -88,9 +88,11 @@ function App() {
         <Routes>
           {/* --- Public Routes --- */}
           <Route element={<PublicLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/" />} />
+            <Route path="/" element={!isAuthenticated ? <HomePage /> : <Navigate to="/dashboard" />} />
+            <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/dashboard" />} />
           </Route>
+
+          <Route path="/dashboard" element={<RoleBasedRedirect />} />
 
           {/* --- Role-Specific Protected Routes --- */}
           <Route element={<ManagerRoutes />}>
@@ -123,7 +125,6 @@ function App() {
           </Route>
 
           {/* --- Redirects and Catch-alls --- */}
-          <Route path="/" element={<RoleBasedRedirect />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

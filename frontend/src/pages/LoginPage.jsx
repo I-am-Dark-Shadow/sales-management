@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import toast from 'react-hot-toast';
 import BgAnimation from '../components/shared/BgAnimation'; // ⬅️ import animation
+import pranLogo from '/logo.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const LoginPage = () => {
         <div className="rounded-2xl border border-black/10 bg-white shadow-sm p-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-10 w-10 grid place-items-center rounded-md border border-black/10 text-pran-red text-xl font-semibold tracking-tighter">
-              <img src="../../public/logo.png" alt="Logo" />
+              <img src={pranLogo} alt="Logo" />
             </div>
             <div>
               <h2 className="text-xl font-semibold tracking-tight">Welcome back</h2>

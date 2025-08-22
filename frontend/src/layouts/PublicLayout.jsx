@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { LogIn } from 'lucide-react';
 import BgAnimation from '../components/shared/BgAnimation'; // ⬅️ import animation component
+import pranLogo from '/logo.png';
 
 const PublicHeader = () => {
   return (
@@ -10,7 +11,7 @@ const PublicHeader = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3">
             <div className="h-10 w-10 grid place-items-center rounded-md border border-black/10 text-pran-red font-semibold tracking-tighter">
-              <img src="../../public/logo.png" alt="Logo" />
+              <img src={pranLogo} alt="Logo" />
             </div>
             <span className="text-lg sm:text-xl font-semibold tracking-tight">Sales Management</span>
           </Link>
