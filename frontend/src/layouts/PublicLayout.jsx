@@ -10,7 +10,7 @@ const PublicHeader = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3">
             <div className="h-10 w-10 grid place-items-center rounded-md border border-black/10 text-pran-red font-semibold tracking-tighter">
-              <img src="/logo.png" alt="Logo" />
+              <img src="./logo.png" alt="Logo" />
             </div>
             <span className="text-lg sm:text-xl font-semibold tracking-tight">Sales Management</span>
           </Link>
