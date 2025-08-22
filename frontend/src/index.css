@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+@import 'react-calendar/dist/Calendar.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom overrides for the calendar to match our theme */
+
+.react-calendar {
+  @apply border-none rounded-2xl w-full text-sm p-4 shadow-inner bg-gray-50;
+}
+
+.react-calendar__navigation button {
+  @apply font-bold hover:bg-gray-200 rounded-lg;
+}
+
+.react-calendar__navigation button:disabled {
+  @apply bg-transparent opacity-50;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  @apply text-center font-semibold text-xs text-gray-500 uppercase pt-2 pb-4;
+}
+
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr); 
+  gap: 0.5rem; 
+}
+
+.react-calendar__tile {
+  @apply lg:h-20 h-8 flex font-semibold items-center justify-center lg:rounded-xl rounded-md hover:bg-gray-200 transition-colors p-0;
+}
+
+.react-calendar__tile--now {
+  @apply bg-pran-blue/30 font-bold;
+}
+
+.react-calendar__tile--active {
+  @apply bg-transparent text-white shadow-md;
+}
+
+.react-calendar__tile:disabled {
+  @apply text-gray-400 bg-red-200 hover:bg-red-200 cursor-not-allowed;
+}
+
+/* Our custom status colors */
+.react-calendar__tile.present {
+  @apply bg-pran-green text-white hover:bg-pran-green/80;
+}
+
+.react-calendar__tile.absent,
+.react-calendar__tile.leave,
+.react-calendar__tile.leaveapproved {
+  @apply bg-pran-red text-white hover:bg-pran-red/80;
+}
+
+.react-calendar__tile.halfday,
+.react-calendar__tile.leavepending {
+  @apply bg-pran-yellow text-white;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-light text-gray-dark antialiased;
+  }
+}
