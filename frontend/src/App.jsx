@@ -16,7 +16,7 @@ import LoginPage from './pages/LoginPage';
 // Shared Authenticated Pages
 import ProfilePage from './pages/shared/ProfilePage';
 import ExpensesPage from './pages/shared/ExpensesPage';
-import ChatPage from './pages-chat/ChatPage';
+import ChatPage from './pages/shared/ChatPage';
 import LeaderboardPage from './pages/shared/LeaderboardPage';
 import NotificationsPage from './pages/shared/NotificationsPage';
 import FilesPage from './pages/shared/FilesPage';
