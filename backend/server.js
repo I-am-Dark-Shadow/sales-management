@@ -43,7 +43,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { // <-- Attach socket.io to the server
   cors: {
-    origin: 'http://localhost:5173',
+    origin: 'https://sales-management-brown.vercel.app',
     //origin: 'http://localhost:5173', // Your frontend URL
     credentials: true,
   },
@@ -60,7 +60,7 @@ initializeSocket(io);
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://sales-management-brown.vercel.app',
   //origin: 'http://localhost:5173', // Your frontend URL
   credentials: true,
 }));
