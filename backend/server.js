@@ -43,7 +43,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { // <-- Attach socket.io to the server
   cors: {
-    origin: 'https://sales-management-azy6269r1.vercel.app',
+    origin: 'https://sales-management-black.vercel.app',
     //origin: 'http://localhost:5173', // Your frontend URL
     credentials: true,
   },
@@ -60,7 +60,7 @@ initializeSocket(io);
 
 // Middlewares
 app.use(cors({
-  origin: 'https://sales-management-azy6269r1.vercel.app',
+  origin: 'https://sales-management-black.vercel.app',
   //origin: 'http://localhost:5173', // Your frontend URL
   credentials: true,
 }));
