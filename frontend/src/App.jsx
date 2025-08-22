@@ -67,7 +67,7 @@ const RoleBasedRedirect = () => {
 }
 
 function App() {
-  const { isAuthenticated, getMe, accessToken, user, setNotifications } = useAuthStore();
+  const { isAuthenticated, getMe, accessToken, setNotifications } = useAuthStore();
 
   useEffect(() => {
     const initApp = async () => {
@@ -88,7 +88,7 @@ function App() {
         <Routes>
           {/* --- Public Routes --- */}
           <Route element={<PublicLayout />}>
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/" />} />
           </Route>
 
